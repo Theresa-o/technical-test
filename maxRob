@@ -1,0 +1,14 @@
+def maxRob(a,nums):
+#if we have just one value to steal, return the index 0
+    if nums == 1:
+        return a[0]
+# if there's nothing to steal, return 0
+    if nums == 0:
+        return 0
+# to get the first max value between the first two indexes/houses
+    a[1] = max(a[0], a[1])
+# to get the current house to steal, check which is the max between previous house or the current house and one house apart from it
+    for i in range(2, nums):
+        a[i] = max(a[i-1], a[i]+a[i-2])
+# return the last value
+    return a[nums-1]
